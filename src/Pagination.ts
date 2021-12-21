@@ -202,6 +202,7 @@ class Pagination {
             time: this.options.timeout,
         });
         collector.on("collect", (interaction: ButtonInteraction) => {
+            if(interaction == undefined) return;
             const handlePage = (() => {
                 if (this._actionRow.components[1] instanceof MessageButton)
                     this._actionRow.components[1].setLabel(
@@ -240,6 +241,7 @@ class Pagination {
                 for (let i = 0; i < this._actionRow.components.length; i++) {
                     this._actionRow.components[i].setDisabled(true);
                 }
+                if(interaction == undefined) return;
                 await interaction
                     .update({
                         embeds: [this.pages[this.page]],
